@@ -1,0 +1,348 @@
+﻿<Window x:Class="Sistemas.Views.PrincipalView1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Sistemas.ViewModels"
+        xmlns:views="clr-namespace:Sistemas.Views"
+        xmlns:f="http://schemas.fontawesome.com/icons/"
+        mc:Ignorable="d"
+        Title="PrincipalView1" 
+        Height="600" 
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        >
+
+    <Window.Resources>
+        <!--<views:LoginView1 x:Key="login"></views:LoginView1>-->
+        <views:LoginView x:Key="login"></views:LoginView>
+        <views:RegistrarseView x:Key="registro"></views:RegistrarseView>
+        <views:UsuariosView x:Key="usuarios"></views:UsuariosView>
+    </Window.Resources>
+
+
+    <Window.DataContext>
+        <vm:PrincipalViewModel></vm:PrincipalViewModel>
+    </Window.DataContext>
+
+    <!--<DockPanel>
+        <TextBlock  DockPanel.Dock="Top" 
+                    Background="Maroon" 
+                    Foreground="White" 
+                    Text=" Control de Usuarios"
+                    FontSize="30" 
+                    TextAlignment="Center"
+                    Padding="20">
+        </TextBlock>
+        <DockPanel Margin="-1"
+                   DockPanel.Dock="Top" 
+                   Background="Maroon">
+            <DockPanel.Style>
+                <Style TargetType="DockPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding EstaConectado}" 
+                                     Value="False">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed">
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DockPanel.Style>
+            <TextBlock  Padding="3" 
+                        DockPanel.Dock="Right" 
+                         FontSize="15" 
+                        Foreground="Yellow">(
+                         <Hyperlink 
+                             Command="{Binding CerrarSesionCommand}" 
+                             Foreground="Yellow">Cerrar sesión
+                         </Hyperlink>
+                        )
+            </TextBlock>
+            <TextBlock Padding="3"
+                       HorizontalAlignment="Right" 
+                       FontSize="15" 
+                       Foreground="White" 
+                       Text="{Binding Usuario.Nombre}">
+            </TextBlock>
+
+        </DockPanel>
+
+
+
+    <ContentControl  Content="{Binding Vista}"/>
+
+    <ContentControl>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    
+    <Setter Property="Content" Value="{StaticResource login}"></Setter>
+    
+                    <Setter Property="Content" Value="{Binding Vista}"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Modo}" Value="Registrar">
+                            <Setter Property="Content" Value="{StaticResource registro}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Modo}" Value="login">
+                            <Setter Property="Content" Value="{Binding Vista}"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+
+
+    </DockPanel>-->
+
+
+
+
+
+
+    <!--<Grid>
+
+
+        <Border Height="590"
+                Margin="0,20,0,0"
+                CornerRadius="10"
+                Background="#917FB3"
+                >
+
+            <DockPanel>
+
+                <Button DockPanel.Dock="Top"
+                        Width="30" 
+                        Height="20"
+                        HorizontalAlignment="Right"
+                        Margin="0,4,10,0"
+                        Background="red"
+                        BorderThickness="0"
+                        Click="Button_Click"
+                        >
+                    <f:ImageAwesome Icon="Solid_Times"></f:ImageAwesome>
+                </Button>
+                <ContentControl Height="530"
+                                Margin="8,8,8,0"
+                                >
+
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Setter Property="Content" Value="{StaticResource login}"></Setter>
+                            
+                    <Setter Property="Content" Value="{Binding Vista}"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Modo}" Value="Registrar">
+                            <Setter Property="Content" Value="{StaticResource registro}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Modo}" Value="login">
+                            <Setter Property="Content" Value="{Binding Vista}"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+                    
+                    
+                </ContentControl>
+                
+            </DockPanel>
+            
+            
+        </Border>
+
+        <Border Background="#2A2F4F"
+                CornerRadius="15" 
+                Height="80"
+                Width="700"
+                DockPanel.Dock="Top"
+                MouseDown="Border_MouseDown"
+                VerticalAlignment="Top"
+                >
+            <TextBlock Foreground="White"
+                       FontSize="35"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       DockPanel.Dock="Bottom"
+                       FontFamily="arial"
+                       FontWeight="DemiBold"
+                       >Control de usuarios
+
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E5BEEC"></DropShadowEffect>
+                </TextBlock.Effect>
+
+            </TextBlock>
+
+
+
+        </Border>
+
+
+    </Grid>-->
+
+
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"></RowDefinition>
+            <RowDefinition Height=".8*"></RowDefinition>
+            <RowDefinition Height=".1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Background="#F9D949">
+        </TextBlock>
+
+
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+
+
+            <!--<TextBlock VerticalAlignment="Center"
+                       FontWeight="DemiBold"
+                       FontSize="15"
+                       Margin="0,0,60,0"
+                       >
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding EstaConectado}" 
+                                     Value="False">
+                                <Setter Property="Visibility"
+                                    Value="Collapsed">
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+                
+                <Hyperlink>Cambiar Contraseña
+                
+                    <Hyperlink.Style>
+                    <Style TargetType="Hyperlink">
+                        <Style.Triggers>
+                           <Trigger Property="IsMouseOver" Value="True">
+                               <Setter Property="Foreground" Value="White"></Setter>
+                           </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Hyperlink.Style>
+                    
+                </Hyperlink>
+
+
+            </TextBlock>-->
+            
+            
+            
+            <TextBlock VerticalAlignment="Center"
+                       FontWeight="DemiBold"
+                       FontSize="15"
+                       >
+
+
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding EstaConectado}" 
+                                     Value="False">
+                                <Setter Property="Visibility"
+                                    Value="Collapsed">
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+                
+                <Hyperlink  Command="{Binding CerrarSesionCommand}" >Cerrar Sesión
+                
+                <Hyperlink.Style>
+                    <Style TargetType="Hyperlink">
+                        <Style.Triggers>
+                           <Trigger Property="IsMouseOver" Value="True">
+                               <Setter Property="Foreground" Value="White"></Setter>
+                           </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Hyperlink.Style>
+                
+                </Hyperlink>
+            </TextBlock>
+            
+            <Button Width="50" HorizontalAlignment="Right"
+                Margin="5,5,15,5" 
+                Background="Transparent"
+                BorderThickness="0"
+                Click="Button_Click"
+                    Name="btnOff"
+                >
+
+
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Width="50" Height="50"
+                            CornerRadius="23"
+                            >
+                            <f:ImageAwesome Width="25" Icon="Solid_PowerOff"></f:ImageAwesome>
+
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Red"></Setter>
+                                        </Trigger>
+                                        <DataTrigger Binding="{Binding EstaConectado}" 
+                                     Value="True">
+                                            <Setter Property="Visibility"
+                                    Value="Collapsed">
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+
+
+            </Button>
+        </WrapPanel>
+        
+        
+        
+
+        <TextBlock Background="#F9D949" Grid.Row="2">
+        </TextBlock>
+
+        <Grid Grid.Row="1">
+            <Image Source="\Views\Cloud 9 Wallpaper.jpg" Stretch="Fill"></Image>
+            
+
+            <ContentControl>
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Content" Value="{StaticResource login}"></Setter>
+
+                        <Setter Property="Content" Value="{Binding Vista}"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Modo}" Value="Registrar">
+                                <Setter Property="Content" Value="{StaticResource registro}"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Modo}" Value="login">
+                                <Setter Property="Content" Value="{Binding Vista}"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+            
+        </Grid>
+
+    </Grid>
+
+
+</Window>

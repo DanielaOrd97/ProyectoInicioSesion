@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="Sistemas.Views.RegistrarseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sistemas.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+
+    <!--<StackPanel Margin="20">
+        <Label>Nombre:</Label>
+        <TextBox Text="{Binding usuario.Nombre}"></TextBox>
+
+        <Label>Correo electrónico:</Label>
+        <TextBox Text="{Binding usuario.Correo}"></TextBox>
+
+        <Label>Contraseña:</Label>
+        <TextBox Text="{Binding usuario.Contrasena}"></TextBox>
+
+        <TextBlock Margin="10" Text="{Binding Error}" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
+
+        <WrapPanel HorizontalAlignment="Center" Margin="20">
+            <Button Padding="10,5" Command="{Binding RegistrarUsuarioCommand}">Agregar</Button>
+            <Button Padding="10,5" Command="{Binding RegresarCommand}" Margin="10,0,0,0">Cancelar</Button>
+        </WrapPanel>
+    </StackPanel>-->
+
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TextColor" Color="Gray"></SolidColorBrush>
+        <SolidColorBrush x:Key="Background" Color="#FFFFFF"></SolidColorBrush>
+        <SolidColorBrush x:Key="Border" Color="#F9D949"></SolidColorBrush>
+
+
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}" x:Name="txtBox">
+
+            <Setter Property="Background" Value="{DynamicResource Background}"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource Border}"></Setter>
+            <!--<Setter Property="Padding" Value="6 3"></Setter>-->
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="Cursor" Value="IBeam"></Setter>
+            <!--<Setter Property="AllowDrop" Value="True"></Setter>-->
+            <Setter Property="AllowDrop" Value="True"></Setter>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"></Setter>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <!--<Setter Property="Width" Value="600"></Setter>
+            <Setter Property="Height" Value="35"></Setter>-->
+            <!--<Setter Property="Margin" Value="0,15,0,0"></Setter>-->
+
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type TextBox}" x:Name="tem1">
+
+                        <Border x:Name="txtBorder"
+                                
+                                Background="Transparent"
+                               
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                SnapsToDevicePixels="True"
+                                Width="320"
+                                Height="35"
+                                VerticalAlignment="Center"
+                                BorderThickness="0,0,0,2"
+                                >
+
+                            <Grid Margin="{TemplateBinding Padding}">
+
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                              Focusable="False"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              VerticalScrollBarVisibility="Hidden"
+                                              >
+
+                                </ScrollViewer>
+
+                                <Label x:Name="WaterMarkerLabel"
+                                       Content="{TemplateBinding Tag}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       Visibility="Collapsed"
+                                       Foreground="{DynamicResource TextColor}"
+                                       Padding="{TemplateBinding Padding}"
+                                       Margin="15,0,0,0"
+                                       
+                                    >
+
+                                </Label>
+
+                            </Grid>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""></Condition>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility"
+                                        TargetName="WaterMarkerLabel"
+                                        Value="Visible"
+                                        ></Setter>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="white" CornerRadius="10" Width="750" Height="450">
+        <DockPanel>
+            <Border Background="#3C486B" 
+                    DockPanel.Dock="Left"
+                    Width="180"
+                    CornerRadius="10,0,0,10"
+                    >
+                
+            </Border>
+            <StackPanel DockPanel.Dock="Right" Margin="0,20,0,0">
+                <TextBox Style="{DynamicResource TextBoxStyle}"
+                         Tag="Nombre"
+                         Text="{Binding usuario.Nombre}"
+                         Margin="0,20,0,0"
+                         ></TextBox>
+
+                <TextBox Style="{DynamicResource TextBoxStyle}"
+                         Tag="Correo electrónico"
+                         Text="{Binding usuario.Correo}"
+                         Margin="0,20,0,0"
+                         ></TextBox>
+
+                <TextBox Style="{DynamicResource TextBoxStyle}"
+                         Tag="Contraseña"
+                         Text="{Binding usuario.Contrasena}"
+                         Margin="0,20,0,0"
+                         ></TextBox>
+
+                <ComboBox Width="320"
+                              Height="30"
+                              ItemsSource="{Binding ListaRoles}"
+                              DisplayMemberPath="Nombre"
+                              SelectedValue="{Binding usuario.IdRol}"
+                              SelectedValuePath="Id"
+                              SelectedItem="{Binding Rol}"
+                              Margin="0,25,0,0"
+                              SelectedIndex="0"
+                              VerticalContentAlignment="Center"
+                              >
+                </ComboBox>
+
+
+                <TextBlock Margin="0,20,0,10" Text="{Binding Error}" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
+
+                <WrapPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Button Margin="0,0,25,0"
+                             Command="{Binding RegistrarUsuarioCommand}"
+                            >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Background="#F9D949" Width="100" Height="30" CornerRadius="5"
+                                               Name="BorderAceptar"
+                                        >
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="arial"
+                                               >Aceptar
+
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=BorderAceptar, Path=IsMouseOver}" Value="True">
+                                                        <Setter Property="Foreground" Value="White"></Setter>
+                                                    </DataTrigger>
+                                                    <Trigger Property="Foreground" Value="white">
+                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    
+                                    </TextBlock>
+
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Command="{Binding RegresarCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Background="#F9D949" Width="100" Height="30" CornerRadius="5"
+                                        Name="BorderCancelar"
+                                        >
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontFamily="arial"
+                                               
+                                               >Cancelar
+
+
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=BorderCancelar, Path=IsMouseOver}" Value="True">
+                                                        <Setter Property="Foreground" Value="White"></Setter>
+                                                    </DataTrigger>
+                                                    <Trigger Property="Foreground" Value="white">
+                                                        <Setter Property="Cursor" Value="Hand"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+
+                                    </TextBlock>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </WrapPanel>
+
+            </StackPanel>
+        </DockPanel>
+    </Border>
+
+</UserControl>
